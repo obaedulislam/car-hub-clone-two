@@ -24,6 +24,7 @@ const AuthProvider = ({children}) => {
 
     // SignOUT
     const logOut = () => {
+        localStorage.removeItem('carhub-token');
         return signOut(auth);
     }
 

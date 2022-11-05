@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { json, Link, useLocation, useNavigate } from 'react-router-dom';
 import loginimg from '../../assets/images/login/login.svg'
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF,  FaLinkedinIn} from "react-icons/fa";
@@ -18,11 +18,33 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
         login( email, password)
         .then(result => {
             const user = result.user;
-            console.log(user);
-            navigate(from, {replace: true});
+
+            const currentUser = {
+                email: user.email
+            }
+            console.log(currentUser);
+
+            //Get JWT Token
+            fetch('http://localhost:5000/jwt', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+                //Local storage is easiest but not best for store token
+                localStorage.setItem('carhub-token', data.token)
+                navigate(from, {replace: true});
+            })
+
         })
         .catch(error => console.error(error))
     }
