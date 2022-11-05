@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import login from '../../assets/images/login/login.svg'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import loginimg from '../../assets/images/login/login.svg'
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF,  FaLinkedinIn} from "react-icons/fa";
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
@@ -8,6 +8,10 @@ import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 const Login = () => {
 
     const {login} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    let from = location.state?.from?.pathname || "/";
 
     const handleLogin = event => {
         event.preventDefault();
@@ -18,6 +22,7 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            navigate(from, {replace: true});
         })
         .catch(error => console.error(error))
     }
@@ -26,7 +31,7 @@ const Login = () => {
     <div className="w-full mb-20">
         <div className=" grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
             <div className="text-center lg:text-left flex items-center">
-                <img className='w-3/4 mx-auto' src={login} alt="" />
+                <img className='w-3/4 mx-auto' src={loginimg} alt="" />
             </div>
             <div className="card flex-shrink-0 w-full  shadow-xl bg-base-100 py-16 px-7 border border-gray-50">
                 <h1 className="text-5xl text-center font-semibold text-[#444444]">Login</h1>
