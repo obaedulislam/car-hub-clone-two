@@ -25,7 +25,7 @@ const CheckOut = () => {
             message,
         };
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://car-hub-server.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { json, Link, useLocation, useNavigate } from 'react-router-dom';
 import loginimg from '../../assets/images/login/login.svg'
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebookF,  FaLinkedinIn} from "react-icons/fa";
+
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -29,7 +29,7 @@ const Login = () => {
             console.log(currentUser);
 
             //Get JWT Token
-            fetch('http://localhost:5000/jwt', {
+            fetch('https://car-hub-server.vercel.app/jwt', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -77,20 +77,9 @@ const Login = () => {
                         <input className="btn bg-[#FF3811] border-[#FF3811] duration-300 text-white hover:text-[#FF3811] hover:bg-[#ff391100]  capitalize text-xl text-semibold " type="submit" value="Log In" />
                     </div>
                 </form>
-             
 
-                <div className='text-center '>
-                    <p className='font-semibold'>-----Or Sing In With-----</p>
-                    <div className='flex justify-center  mt-2'>
-                    
-                        <ul className='flex'>
-                            <Link className='w-[45px] h-[45px] mx-[5px] bg-gray-100 border   hover:bg-[#fff] text-primary  rounded-full pt-3 flex justify-center' to='https://www.facebook.com/obaedulislam.mohammad/' target="_blank"><FaFacebookF className='text-xl'></FaFacebookF></Link>
-                            <Link className='w-[45px] h-[45px] mx-[5px] bg-gray-100 border hover:bg-[#fff] text-primary  rounded-full pt-3 flex justify-center' to='https://www.linkedin.com/in/obaedulislam/' target="_blank"><FaLinkedinIn className='text-xl'></FaLinkedinIn></Link>
-                            <Link className='w-[45px] h-[45px] mx-[5px] bg-gray-100 border   hover:bg-[#fff] text-primary  rounded-full pt-3 flex justify-center' to='https://www.instagram.com/obaedul_islam/' target="_blank"><FcGoogle className='text-xl'></FcGoogle></Link>
+                <SocialLogin></SocialLogin>
 
-                        </ul>
-                    </div>
-                </div>
                 <p className='text-center mt-5'>New to Genius Car <Link className='text-[#FF3811] font-bold' to="/signup">Sign Up</Link> </p>
             </div>
         </div>

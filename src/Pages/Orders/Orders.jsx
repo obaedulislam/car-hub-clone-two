@@ -9,7 +9,7 @@ const Orders = () => {
 
 
     useEffect( () => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+        fetch(`https://car-hub-server.vercel.app/orders?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('carhub-token')}`
             }
@@ -29,7 +29,7 @@ const Orders = () => {
     const handleDelete = id => {
         const proceed = window.confirm("Are you sure? You want to cancel this order");
         if(proceed){
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://car-hub-server.vercel.app/orders/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('carhub-token')}`
@@ -49,7 +49,7 @@ const Orders = () => {
     }
 
     const handleStatusUpdate = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://car-hub-server.vercel.app/orders/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
