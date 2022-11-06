@@ -22,7 +22,7 @@ const Orders = () => {
         })
         .then(data => {
             console.log('received', data);
-            //setOrders(data)
+            setOrders(data)
         })
     }, [user?.email, logOut ]);
 

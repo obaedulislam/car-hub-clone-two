@@ -48,7 +48,7 @@ const CheckOut = () => {
     return (
     <div>
         <div className='banner banner-img'>
-            <img src={checkout} alt="" srcset="" />
+            <img src={checkout} alt="" />
         </div>
 
         <div className='bg-gray-100 p-28 my-20 rounded-xl'>
